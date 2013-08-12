@@ -6,8 +6,30 @@
 //define your token
 define("TOKEN", "wechat");
 
+header('Content-Type:text/html; charset=UTF-8');
 
-class wechat
+class Database {
+    public $name=SAE_MYSQL_USER;
+    public $password=SAE_MYSQL_PASS;
+    public $db=SAE_MYSQL_DB;
+    
+    public function dql($sql){
+        $mysql=new mysqli(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,$this->name,$this->password,$this->db);
+        $mysql->query("set names utf8");    
+        $res=$mysql->query($sql);
+        return $res;
+    }
+    
+    public function dml($sql)
+    {   
+        $mysql=new mysqli(SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT,$this->name,$this->password,$this->db);
+        $mysql->query("set names utf8");    
+        $mysql->query($sql);
+        
+    }
+}
+
+class wechat extends Database
 {
 	public function valid()
     {
@@ -24,6 +46,7 @@ class wechat
     {   
         // Welcome Information
         include 'welcome.php';
+
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 
@@ -51,11 +74,16 @@ class wechat
                 	echo $resultStr;
                 }else{
                 	echo "Input something...";
+                    $contentStr = $welcomeinfo;
+                    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                    echo $resultStr;
                 }
 
         }else {
-        	echo "";
-        	exit;
+        	$contentStr = $welcomeinfo;
+            $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+            echo $resultStr;
+        	// exit;
         }
     }
 		
@@ -80,5 +108,5 @@ class wechat
 }
 
 $wechatObj = new wechat();
-$wechatObj->responseMsg;
+$wechatObj->responseMsg();
 ?>

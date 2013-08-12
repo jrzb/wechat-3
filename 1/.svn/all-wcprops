@@ -3,11 +3,17 @@ svn:wc:ra_dav:version-url
 V 26
 /publicwechat/!svn/ver/1/1
 END
+welcome.php
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/publicwechat/!svn/ver/16/1/welcome.php
+END
 wx_sample.php
 K 25
 svn:wc:ra_dav:version-url
-V 40
-/publicwechat/!svn/ver/6/1/wx_sample.php
+V 41
+/publicwechat/!svn/ver/25/1/wx_sample.php
 END
 config.yaml
 K 25
@@ -20,10 +26,4 @@ K 25
 svn:wc:ra_dav:version-url
 V 36
 /publicwechat/!svn/ver/1/1/index.php
-END
-welcome.php
-K 25
-svn:wc:ra_dav:version-url
-V 38
-/publicwechat/!svn/ver/4/1/welcome.php
 END
